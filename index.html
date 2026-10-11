@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Inteliar Ads — Auditoría y gestión de Google Ads con datos reales</title>
+<meta name="description" content="Encontramos lo que tu cuenta de Google Ads no te está mostrando. Auditoría con datos reales: desperdicio, problemas de medición y oportunidades de crecimiento.">
+<meta property="og:title" content="Inteliar Ads — Encontramos lo que tu cuenta no te está mostrando">
+<meta property="og:description" content="Auditoría y gestión de Google Ads con datos reales y acciones concretas.">
+<meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f5eff'/%3E%3Cpath d='M9 23V14M16 23V9M23 23v-6' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#f6f8fc;color:#0d1530;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+*{box-sizing:border-box}
+img{max-width:100%}
+a{color:#1f5eff;text-decoration:none}
+a:hover{color:#1546c9}
+button{font-family:inherit}
+:focus-visible{outline:2px solid #1f5eff;outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(255,107,91,.45)}70%{box-shadow:0 0 0 14px rgba(255,107,91,0)}100%{box-shadow:0 0 0 0 rgba(255,107,91,0)}}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 currentColor}80%,100%{box-shadow:0 0 0 7px transparent}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(24px,-18px) scale(1.06)}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+[data-reveal].is-visible{opacity:1;transform:none}
+
+.skip-link{position:absolute;left:-9999px;top:8px;background:#0d1530;color:#fff;padding:10px 14px;border-radius:10px;z-index:100}
+.skip-link:focus{left:8px}
+
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #e8ecf5}
+.header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
+.logo{font-weight:700;font-size:24px;letter-spacing:-.02em;color:#0d1530;display:flex;gap:6px}
+nav.main-nav{display:flex;gap:28px;margin-left:24px;font-size:14px;font-weight:500}
+nav.main-nav a{color:#4a5370}
+nav.main-nav a:hover{color:#1f5eff}
+.spacer{flex:1}
+.btn-audit-mini{display:flex;align-items:center;gap:10px;background:#0d1530;color:#fff;padding:11px 18px;border-radius:12px;font-size:14px;font-weight:600;white-space:nowrap;transition:transform .2s,background .2s}
+.btn-audit-mini:hover{background:#1f5eff;color:#fff;transform:translateY(-1px)}
+.menu-btn{width:44px;height:44px;border-radius:12px;border:1px solid #e3e8f2;background:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+nav.mobile-nav{display:flex;flex-direction:column;padding:4px 24px 18px;font-weight:500;animation:fadeUp .25s ease}
+nav.mobile-nav a{color:#0d1530;padding:12px 0;border-bottom:1px solid #eef1f7}
+nav.mobile-nav a:last-child{border-bottom:none}
+@media (min-width:861px){.menu-btn,nav.mobile-nav{display:none}}
+@media (max-width:860px){nav.main-nav{display:none}}
+
+main{display:block}
+section{position:relative}
+
+.hero{background:linear-gradient(180deg,#eef3fd 0%,#f6f8fc 100%);overflow:hidden}
+.hero-inner{position:relative;max-width:1200px;margin:0 auto;padding:56px 24px 72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:48px;align-items:center}
+.blob-bg{position:absolute;border-radius:50%;filter:blur(90px);animation:drift 15s ease-in-out infinite alternate}
+.eyebrow-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #dbe6ff;color:#1f4fd1;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px 5px 6px;border-radius:999px;box-shadow:0 4px 12px -6px rgba(31,94,255,.35)}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(38px,5.6vw,66px);line-height:1;letter-spacing:-.025em;margin:22px 0 22px;text-wrap:balance}
+.hero-lede{font-size:clamp(16px,1.6vw,18px);line-height:1.55;color:#3d4663;max-width:500px;margin:0 0 30px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.btn-primary{display:flex;align-items:center;gap:10px;background:#0d1530;color:#fff;padding:16px 22px;border-radius:14px;font-weight:600;font-size:15px;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(13,21,48,.6);transition:all .2s}
+.btn-primary:hover{background:#1f5eff;color:#fff;transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(31,94,255,.7)}
+.btn-outline{display:flex;align-items:center;gap:10px;background:#fff;color:#0d1530;padding:16px 22px;border-radius:14px;font-weight:600;font-size:15px;border:1px solid #dfe4ef;white-space:nowrap;transition:all .2s}
+.btn-outline:hover{border-color:#1f5eff;color:#1f5eff;transform:translateY(-2px)}
+.hero-feats{display:flex;flex-wrap:wrap;gap:28px;font-size:13px;color:#3d4663;font-weight:500;list-style:none;margin:0;padding:0}
+.hero-feats li{display:flex;align-items:center;gap:10px}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+.dash-wrap{position:relative;min-width:0}
+.dash-card{z-index:1;background:#fff;border-radius:24px;box-shadow:0 30px 70px -30px rgba(31,60,140,.35),0 2px 6px rgba(13,21,48,.05);border:1px solid #e8ecf5;padding:22px;position:relative}
+.dash-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:16px}
+.dash-badge-green{display:flex;align-items:center;gap:6px;background:#d6f7e7;color:#0b8a52;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.dash-badge-green i{width:6px;height:6px;border-radius:50%;background:#18c27a;animation:livePulse 2s infinite}
+.dash-ctr{display:flex;align-items:baseline;gap:4px;background:#1f5eff;color:#fff;border-radius:999px;padding:4px 10px;box-shadow:0 8px 18px -8px rgba(31,94,255,.7);white-space:nowrap}
+.dash-tabs{display:flex;gap:2px;border-bottom:1px solid #eef1f7;margin-bottom:18px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.dash-tab-btn{flex:none;background:none;border:none;padding:8px 10px 10px;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;color:#6b7491;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.dash-tab-btn:hover{color:#1f5eff}
+.dash-tab-btn.active{color:var(--tab-color,#1a5fd6);border-bottom-color:var(--tab-line,#4285F4)}
+.dash-panel{min-height:452px}
+.dash-panel>div[data-tab]{display:none;animation:fadeUp .35s ease}
+.dash-panel>div[data-tab].active{display:block}
+.finding-card{text-align:left;cursor:pointer;border:2px solid transparent;background:#fff1ef;border-radius:18px;padding:18px 18px 16px;position:relative;transition:transform .25s,box-shadow .25s,border-color .25s;width:100%}
+.finding-card:hover{transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(255,107,91,.7)}
+.finding-card.active{border-color:#ff8a7a}
+.step-btn{border:none;cursor:pointer;text-align:left;padding:8px 10px 10px;border-radius:12px;background:transparent;transition:background .3s}
+.step-btn.active{background:#fff}
+.step-fill{height:4px;border-radius:4px;background:#e6eaf3;overflow:hidden;margin-bottom:8px}
+.step-fill>div{height:100%;width:0;transition:width .5s ease}
+.flow-box{border-radius:18px;background:#f8f9fd;border:1px solid #eef1f7;padding:18px;min-height:212px}
+.flow-step{display:none;animation:fadeUp .35s ease}
+.flow-step.active{display:block}
+
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.problem-card{background:#fff;border-radius:22px;padding:26px;border:1px solid #e8ecf5;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.problem-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px -24px rgba(31,60,140,.3)}
+.problem-card:hover .problem-link{opacity:1;transform:translateX(0)}
+.problem-card:hover .problem-detail{opacity:1;transform:translateY(0)}
+.problem-icon{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center}
+.problem-stat-box{border-radius:16px;border:1px solid #eef1f7;padding:16px;margin-bottom:16px;box-shadow:0 6px 18px -12px rgba(13,21,48,.2)}
+.problem-detail{font-size:11.5px;font-weight:600;margin-top:8px;opacity:0;transform:translateY(4px);transition:all .3s}
+.problem-link{font-size:13px;font-weight:600;color:#1f5eff;opacity:0;transform:translateX(-6px);transition:all .3s}
+.bar-track{height:9px;border-radius:6px;background:#eef1f7;overflow:hidden}
+.bar-track.lost .bar-fill{height:100%;width:0;background:#ff6b5b;border-radius:6px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.is-visible .bar-track.lost .bar-fill{width:51%}
+
+.proc-grid-wrap{position:relative}
+.proc-line-track{position:absolute;left:12.5%;right:12.5%;top:9px;height:3px;border-radius:3px;background:#d3e6ef}
+.proc-line-fill{position:absolute;left:12.5%;top:9px;height:3px;border-radius:3px;width:0;background:linear-gradient(90deg,#1f5eff,#18c27a,#ffc233,#8b5cf6);transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.proc-nodes{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-bottom:22px}
+.proc-node{display:flex;flex-direction:column;align-items:center;gap:8px}
+.proc-dot{width:21px;height:21px;border-radius:50%;background:#fff;border:3px solid #d3e6ef;transition:all .4s}
+.proc-node-label{font-size:11px;font-weight:600;letter-spacing:.08em;color:#8a93ad;transition:color .4s}
+@media (max-width:860px){.proc-nodes,.proc-line-track,.proc-line-fill{display:none}}
+.proc-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:20px;list-style:none;margin:0;padding:0}
+.proc-step{background:rgba(255,255,255,.7);border-radius:20px;padding:24px;border:1px solid #fff;transition:all .4s}
+.proc-step:hover{background:#fff;transform:translateY(-4px)}
+.proc-step.active{background:#fff;box-shadow:0 18px 36px -24px rgba(31,60,140,.45)}
+.proc-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px}
+
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.case-card{background:#fff;border-radius:22px;padding:26px;border:1px solid #e8ecf5;transition:all .3s}
+.case-card:hover{box-shadow:0 24px 48px -24px rgba(31,60,140,.3);transform:translateY(-4px)}
+.case-card.morfi{background:linear-gradient(160deg,#f5f0ff,#f9f7ff);border-color:#e7defd}
+.case-card.morfi:hover{box-shadow:0 24px 48px -24px rgba(139,92,246,.35)}
+.case-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin-bottom:20px}
+.case-avatar{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;font-size:20px}
+.case-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:18px}
+.case-stat{border-radius:14px;padding:14px}
+
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px;align-items:stretch}
+.price-card{position:relative;background:#fff;border-radius:22px;padding:26px;border:2px solid #e8ecf5;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.price-card:hover{transform:translateY(-6px);box-shadow:0 28px 50px -26px rgba(31,60,140,.4)}
+.price-badge{position:absolute;top:-13px;left:22px;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px}
+.price-list{display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#3d4663;margin:0 0 24px;padding:0;list-style:none;flex:1}
+.price-list li{display:flex;gap:9px}
+.price-cta{display:flex;justify-content:center;align-items:center;gap:8px;padding:14px;border-radius:12px;font-size:14px;font-weight:600;transition:filter .2s,transform .2s}
+.price-cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.extra-card{display:flex;gap:16px;align-items:flex-start;border-radius:20px;padding:22px;color:#0d1530;transition:all .3s}
+.extra-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+
+.cta-section{padding:24px 24px 40px;overflow:hidden}
+.cta-outer{position:relative;max-width:1200px;margin:0 auto}
+.cta-box{position:relative;background:#0b1430;color:#fff;border-radius:32px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(13,21,48,.6)}
+.cta-inner{position:relative;padding:clamp(40px,6vw,72px) clamp(24px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:center}
+.cta-links{display:flex;flex-direction:column;gap:12px;max-width:400px;width:100%;justify-self:end}
+.cta-link{display:flex;align-items:center;gap:12px;padding:18px 22px;border-radius:14px;font-weight:700;font-size:15px;transition:all .2s}
+.cta-link.blue{background:#1f5eff;color:#fff;padding:20px 22px;font-size:16px;box-shadow:0 18px 36px -14px rgba(31,94,255,.8)}
+.cta-link.blue:hover{background:#3d74ff;color:#fff;transform:translateY(-2px)}
+.cta-link.teal{background:#2ee6c1;color:#06281f}
+.cta-link.teal:hover{background:#5ff0d2;color:#06281f;transform:translateY(-2px)}
+.cta-link.outline{border:1px solid #3a4874;color:#fff}
+.cta-link.outline:hover{border-color:#a9b8e0;background:rgba(255,255,255,.05);color:#fff}
+
+footer.site{color:#4a5370}
+.footer-inner{max-width:1200px;margin:0 auto;padding:22px 24px 96px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+.sticky-wa{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:10px;background:#2ee6c1;color:#06281f;padding:14px 18px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 14px 30px -10px rgba(6,40,31,.55);animation:fadeUp .4s ease}
+.sticky-wa:hover{color:#06281f;background:#5ff0d2}
+
+h2{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.02em;margin:0;text-wrap:balance}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<header class="site">
+  <div class="header-inner">
+    <a href="#top" aria-label="Inteliar Ads, inicio" class="logo">Inteliar <span style="color:#1f5eff">Ads</span></a>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#casos">Casos</a>
+      <a href="#precios">Precios</a>
+      <a href="#extra">Servicios extra</a>
+    </nav>
+    <div class="spacer"></div>
+    <a href="#" id="audit-link-header" target="_blank" rel="noopener" class="btn-audit-mini">Pedir auditoría
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+    </a>
+    <button class="menu-btn" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d1530" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Móvil">
+    <a href="#proceso">Cómo trabajamos</a>
+    <a href="#casos">Casos</a>
+    <a href="#precios">Precios</a>
+    <a href="#extra">Servicios extra</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <div class="blob-bg" aria-hidden="true" style="right:-80px;top:40px;width:340px;height:340px;background:#19c3e6;opacity:.35"></div>
+  <div class="blob-bg" aria-hidden="true" style="right:28%;top:120px;width:240px;height:240px;background:#ff7a45;opacity:.26;animation-duration:18s"></div>
+  <div class="blob-bg" aria-hidden="true" style="right:-40px;bottom:0;width:260px;height:260px;background:#8b5cf6;opacity:.28;animation-duration:16s"></div>
+  <div class="hero-inner">
+    <div data-reveal>
+      <span class="eyebrow-pill">
+        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path d="M23 11 12 33" stroke="#FBBC04" stroke-width="11" stroke-linecap="round"></path><path d="M23 11l13 23" stroke="#4285F4" stroke-width="11" stroke-linecap="round"></path><circle cx="12.5" cy="34.5" r="6.5" fill="#34A853"></circle></svg>
+        <span style="white-space:nowrap;font-size:clamp(10px,2.8vw,11px)">Auditoría y gestión de Google Ads</span>
+      </span>
+      <h1 id="hero-title">Encontramos lo que tu cuenta <span style="color:#1f5eff">no te está mostrando.</span></h1>
+      <p class="hero-lede">Analizamos tus campañas con datos reales para detectar desperdicio, problemas de medición y oportunidades de crecimiento.</p>
+      <div class="hero-ctas">
+        <a href="#" id="audit-link-hero" target="_blank" rel="noopener" class="btn-primary">Pedir auditoría — <span class="mono">$85.000</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="#casos" class="btn-outline">Ver caso real
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+      <ul class="hero-feats">
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1f5eff" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg>Análisis con<br>datos reales</li>
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1f5eff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"></path></svg>Informe en<br>48-72 hs</li>
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1f5eff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>Acciones concretas<br>y priorizadas</li>
+      </ul>
+    </div>
+
+    <div class="dash-wrap" data-reveal>
+      <div class="dash-card" role="region" aria-label="Dashboard de diagnóstico de una cuenta real">
+        <div class="dash-head">
+          <div style="flex:none;width:32px;height:32px;border-radius:10px;background:#fff;border:1px solid #eef1f7;display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path d="M23 11 12 33" stroke="#FBBC04" stroke-width="11" stroke-linecap="round"></path><path d="M23 11l13 23" stroke="#4285F4" stroke-width="11" stroke-linecap="round"></path><circle cx="12.5" cy="34.5" r="6.5" fill="#34A853"></circle></svg></div>
+          <div style="font-weight:600;font-size:15px;white-space:nowrap">Cuenta analizada</div>
+          <span class="dash-badge-green"><i></i>Hallazgos reales</span>
+          <div style="flex:1"></div>
+          <span style="font-size:11px;color:#7a839e;font-weight:500">Etiquetar.app</span>
+          <span class="dash-ctr"><b class="mono" style="font-size:13px;font-weight:600">+41%</b><span style="font-size:10.5px;font-weight:600;opacity:.9">CTR</span></span>
+        </div>
+
+        <div class="dash-tabs" role="tablist" aria-label="Secciones del dashboard">
+          <button class="dash-tab-btn active" role="tab" data-tab-btn="0" style="--tab-color:#1a5fd6;--tab-line:#4285F4">Resumen</button>
+          <button class="dash-tab-btn" role="tab" data-tab-btn="1" style="--tab-color:#a86f00;--tab-line:#FBBC04">Campañas</button>
+          <button class="dash-tab-btn" role="tab" data-tab-btn="2" style="--tab-color:#1e7e3c;--tab-line:#34A853">Palabras clave</button>
+          <button class="dash-tab-btn" role="tab" data-tab-btn="3" style="--tab-color:#c5221f;--tab-line:#EA4335">Audiencias</button>
+          <button class="dash-tab-btn" role="tab" data-tab-btn="4" style="--tab-color:#1a5fd6;--tab-line:#4285F4">Conversiones</button>
+        </div>
+
+        <div class="dash-panel">
+          <!-- RESUMEN -->
+          <div data-tab="0" class="active">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;margin-bottom:12px">
+              <button class="finding-card" id="open-flow-btn" aria-label="Ver problema, diagnóstico y acción del hallazgo 51% de impresiones perdidas por presupuesto">
+                <div style="font-family:'Fraunces',serif;font-size:52px;font-weight:600;color:#e5452f;line-height:1;letter-spacing:-.02em"><span data-count="51" data-suf="%">0%</span></div>
+                <div style="font-size:14px;font-weight:700;color:#0d1530;margin-top:8px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase">Impresiones perdidas<br>por presupuesto</div>
+                <div style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;animation:pulseRing 2s infinite;border:1px solid #ffd2cb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e5452f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+                <div id="finding-hint" style="font-size:11.5px;color:#b5321f;font-weight:600;margin-top:10px">Tocá para ver problema → diagnóstico → acción</div>
+              </button>
+              <div style="background:#f4f6fb;border-radius:18px;padding:16px;font-size:13px;line-height:1.5;color:#3d4663">Esta cuenta podría estar mostrando sus anuncios a mucha más gente. Detectamos limitaciones de presupuesto en campañas con buen rendimiento.</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin-bottom:16px">
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px"><div style="font-size:11px;color:#6b7491">CTR</div><div class="mono" style="font-weight:600;font-size:15px;margin:5px 0">3,65% → 5,14%</div><div style="font-size:11px;color:#0b8a52;font-weight:600">↑ +41%</div></div>
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px"><div style="font-size:11px;color:#6b7491">Conversiones</div><div class="mono" style="font-weight:600;font-size:17px;margin:4px 0"><span data-count="8">0</span></div><div style="font-size:11px;color:#1f5eff;font-weight:600">Dato real</div></div>
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px"><div style="font-size:11px;color:#6b7491">Costo</div><div class="mono" style="font-weight:600;font-size:17px;margin:4px 0;color:#9aa2b8">—</div><div style="font-size:11px;color:#6b7491">Dato no disponible</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px">
+              <button class="step-btn" data-step-btn="1"><div class="step-fill"><div style="background:#e5452f"></div></div><div class="mono" style="font-size:10px;font-weight:600;letter-spacing:.06em;color:#e5452f">01</div><div style="font-size:12.5px;font-weight:600;color:#6b7491">Problema</div></button>
+              <button class="step-btn" data-step-btn="2"><div class="step-fill"><div style="background:#c48a00"></div></div><div class="mono" style="font-size:10px;font-weight:600;letter-spacing:.06em;color:#c48a00">02</div><div style="font-size:12.5px;font-weight:600;color:#6b7491">Diagnóstico</div></button>
+              <button class="step-btn" data-step-btn="3"><div class="step-fill"><div style="background:#0b8a52"></div></div><div class="mono" style="font-size:10px;font-weight:600;letter-spacing:.06em;color:#0b8a52">03</div><div style="font-size:12.5px;font-weight:600;color:#6b7491">Acción</div></button>
+            </div>
+            <div class="flow-box">
+              <div class="flow-step active" data-flow="0">
+                <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:8px"><span>Participación de impresiones</span><span style="color:#6b7491;font-weight:500">Búsqueda</span></div>
+                <div style="display:flex;height:14px;border-radius:8px;overflow:hidden;margin-bottom:8px;background:#eef1f7"><div id="share-bar" style="width:0;background:#1f5eff;transition:width 1s cubic-bezier(.2,.7,.2,1)"></div><div style="flex:1;background:repeating-linear-gradient(45deg,#ffb4a9 0 6px,#ffd6cf 6px 12px)"></div></div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:11.5px;color:#4a5370;margin-bottom:20px"><span style="display:flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#1f5eff;display:inline-block"></i>Mostradas 49%</span><span style="display:flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#ff8a7a;display:inline-block"></i>Perdidas por presupuesto 51%</span></div>
+                <div style="font-size:12px;font-weight:600;margin-bottom:10px">CTR antes / después</div>
+                <div style="display:grid;grid-template-columns:56px 1fr 52px;gap:8px 10px;align-items:center;font-size:12px">
+                  <span style="color:#6b7491">Antes</span><div style="height:10px;border-radius:6px;background:#e6eaf3"><div id="ctr-before-bar" style="height:100%;width:0;border-radius:6px;background:#a9b6d6;transition:width .9s ease"></div></div><b class="mono">3,65%</b>
+                  <span style="color:#6b7491">Después</span><div style="height:10px;border-radius:6px;background:#e6eaf3"><div id="ctr-after-bar" style="height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#1f5eff,#19c3e6);transition:width 1.1s ease .15s"></div></div><b class="mono">5,14%</b>
+                </div>
+              </div>
+              <div class="flow-step" data-flow="1">
+                <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+                  <svg role="img" aria-label="51% de impresiones perdidas" width="120" height="120" viewBox="0 0 100 100" style="flex:none"><circle cx="50" cy="50" r="40" fill="none" stroke="#dbe6ff" stroke-width="14"></circle><circle id="donut" cx="50" cy="50" r="40" fill="none" stroke="#e5452f" stroke-width="14" stroke-dasharray="0 251.3" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"></circle><text x="50" y="55" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="17" font-weight="600" fill="#0d1530">51%</text></svg>
+                  <div style="flex:1;min-width:180px">
+                    <div class="mono" style="font-size:11px;font-weight:600;letter-spacing:.06em;color:#c23a28;margin-bottom:6px">01 · EL PROBLEMA</div>
+                    <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;line-height:1.2;margin-bottom:8px">De cada 100 búsquedas donde podías aparecer, en 51 tu anuncio no se mostró.</div>
+                    <div style="font-size:13px;color:#4a5370;line-height:1.5">La causa no es la calidad del anuncio: el presupuesto diario se agota antes de tiempo.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flow-step" data-flow="2">
+                <div class="mono" style="font-size:11px;font-weight:600;letter-spacing:.06em;color:#9a6a00;margin-bottom:6px">02 · DIAGNÓSTICO</div>
+                <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;line-height:1.2;margin-bottom:14px">Las campañas limitadas son justamente las que mejor rinden.</div>
+                <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;border:1px solid #eef1f7"><i style="width:8px;height:8px;border-radius:50%;background:#18c27a;display:inline-block"></i><span style="flex:1">CTR en alza</span><b class="mono">3,65% → 5,14%</b></div>
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;border:1px solid #eef1f7"><i style="width:8px;height:8px;border-radius:50%;background:#1f5eff;display:inline-block"></i><span style="flex:1">Conversiones registradas</span><b class="mono">8</b></div>
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:#fff7e0;border-radius:12px;padding:10px 12px;border:1px solid #ffe7a3"><i style="width:8px;height:8px;border-radius:50%;background:#ffc233;display:inline-block"></i><span style="flex:1">Estado de la campaña</span><b style="color:#8a5d00">Limitada por presupuesto</b></div>
+                </div>
+              </div>
+              <div class="flow-step" data-flow="3">
+                <div class="mono" style="font-size:11px;font-weight:600;letter-spacing:.06em;color:#0b8a52;margin-bottom:6px">03 · ACCIÓN RECOMENDADA</div>
+                <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;line-height:1.2;margin-bottom:14px">Mover presupuesto hacia lo que ya funciona.</div>
+                <ul style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#2c3552;margin:0 0 14px;padding:0;list-style:none">
+                  <li style="display:flex;gap:10px"><span style="width:20px;height:20px;border-radius:6px;background:#d6f7e7;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b8a52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Reasignar presupuesto desde campañas de bajo rendimiento.</li>
+                  <li style="display:flex;gap:10px"><span style="width:20px;height:20px;border-radius:6px;background:#d6f7e7;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b8a52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Concentrar inversión en horarios y keywords que convierten.</li>
+                  <li style="display:flex;gap:10px"><span style="width:20px;height:20px;border-radius:6px;background:#d6f7e7;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b8a52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Escalar gradualmente y medir cada cambio.</li>
+                </ul>
+                <a href="#" id="audit-link-flow" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1f5eff">Ver esto en mi cuenta <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CAMPAÑAS -->
+          <div data-tab="1">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="border-radius:18px;background:#f8f9fd;border:1px solid #eef1f7;padding:18px">
+                <div style="display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:600;margin-bottom:10px"><span>Impresiones posibles de la cuenta</span><span class="mono" style="color:#c23a28">51% perdidas</span></div>
+                <div style="display:flex;height:22px;border-radius:10px;overflow:hidden;background:#eef1f7"><div style="width:49%;background:#1f5eff"></div><div style="flex:1;background:repeating-linear-gradient(45deg,#ffb4a9 0 6px,#ffd6cf 6px 12px)"></div></div>
+                <div style="display:flex;justify-content:space-between;font-size:11.5px;color:#4a5370;margin-top:8px"><span>Mostradas 49%</span><span>No mostradas por presupuesto</span></div>
+              </div>
+              <div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7491">Distribución de presupuesto por campaña</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;border:1px solid #eef1f7;border-radius:14px;padding:12px 14px">
+                  <div style="display:flex;align-items:center;gap:10px;min-width:0"><i style="flex:none;width:9px;height:9px;border-radius:50%;background:#1f5eff;display:inline-block"></i><span style="font-size:13.5px;font-weight:600">Campañas con mejor rendimiento</span></div>
+                  <span class="mono" style="font-size:12.5px;color:#9aa2b8;text-align:right">—</span>
+                  <span style="grid-column:1/-1;justify-self:start;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#fff1ef;color:#b5321f">Limitadas por presupuesto</span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;border:1px solid #eef1f7;border-radius:14px;padding:12px 14px">
+                  <div style="display:flex;align-items:center;gap:10px;min-width:0"><i style="flex:none;width:9px;height:9px;border-radius:50%;background:#ffc233;display:inline-block"></i><span style="font-size:13.5px;font-weight:600">Campañas de menor rendimiento</span></div>
+                  <span class="mono" style="font-size:12.5px;color:#9aa2b8;text-align:right">—</span>
+                  <span style="grid-column:1/-1;justify-self:start;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#fff7e0;color:#8a5d00">Candidatas a reasignar</span>
+                </div>
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;border:1px solid #eef1f7;border-radius:14px;padding:12px 14px">
+                  <div style="display:flex;align-items:center;gap:10px;min-width:0"><i style="flex:none;width:9px;height:9px;border-radius:50%;background:#9aa2b8;display:inline-block"></i><span style="font-size:13.5px;font-weight:600">Presupuesto total</span></div>
+                  <span class="mono" style="font-size:12.5px;color:#9aa2b8;text-align:right">Dato no disponible</span>
+                  <span style="grid-column:1/-1;justify-self:start;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#f1f3f8;color:#4a5370">Se detalla en el informe</span>
+                </div>
+              </div>
+              <p style="margin:0;font-size:12px;color:#6b7491">Los montos por campaña se detallan en el informe de auditoría.</p>
+            </div>
+          </div>
+
+          <!-- PALABRAS CLAVE -->
+          <div data-tab="2">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7491">Estructura que revisamos</div>
+              <div style="border:1px solid #eef1f7;border-radius:16px;overflow:hidden">
+                <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 64px;gap:10px;padding:10px 14px;background:#f8f9fd;font-size:11px;font-weight:600;color:#6b7491;text-transform:uppercase;letter-spacing:.05em"><span>Grupo</span><span>Intención</span><span style="text-align:right">Costo</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 64px;gap:10px;align-items:center;padding:12px 14px;border-top:1px solid #eef1f7;font-size:13px"><span style="font-weight:600">Marca</span><span style="display:flex;align-items:center;gap:6px"><span style="display:flex;gap:2px"><i style="width:5px;height:12px;border-radius:2px;background:#18c27a;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#18c27a;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#18c27a;display:inline-block"></i></span><span style="font-size:12px;color:#4a5370">Alta</span></span><span class="mono" style="color:#9aa2b8;text-align:right">—</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 64px;gap:10px;align-items:center;padding:12px 14px;border-top:1px solid #eef1f7;font-size:13px"><span style="font-weight:600">Producto</span><span style="display:flex;align-items:center;gap:6px"><span style="display:flex;gap:2px"><i style="width:5px;height:12px;border-radius:2px;background:#18c27a;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#18c27a;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#18c27a;display:inline-block"></i></span><span style="font-size:12px;color:#4a5370">Alta</span></span><span class="mono" style="color:#9aa2b8;text-align:right">—</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 64px;gap:10px;align-items:center;padding:12px 14px;border-top:1px solid #eef1f7;font-size:13px"><span style="font-weight:600">Genéricas</span><span style="display:flex;align-items:center;gap:6px"><span style="display:flex;gap:2px"><i style="width:5px;height:12px;border-radius:2px;background:#ffc233;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#ffc233;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#e6eaf3;display:inline-block"></i></span><span style="font-size:12px;color:#4a5370">Media</span></span><span class="mono" style="color:#9aa2b8;text-align:right">—</span></div>
+                <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 64px;gap:10px;align-items:center;padding:12px 14px;border-top:1px solid #eef1f7;font-size:13px"><span style="font-weight:600">Informativas</span><span style="display:flex;align-items:center;gap:6px"><span style="display:flex;gap:2px"><i style="width:5px;height:12px;border-radius:2px;background:#ff6b5b;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#e6eaf3;display:inline-block"></i><i style="width:5px;height:12px;border-radius:2px;background:#e6eaf3;display:inline-block"></i></span><span style="font-size:12px;color:#4a5370">Baja</span></span><span class="mono" style="color:#9aa2b8;text-align:right">—</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7491;margin-top:4px">Oportunidades típicas</div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <span style="font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:#d6f7e7;color:#0b6e43">Priorizar términos de compra</span>
+                  <span style="font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:#fff1ef;color:#b5321f">Agregar negativas</span>
+                  <span style="font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:#ebf2ff;color:#1f4fd1">Separar marca de genéricas</span>
+                </div>
+              </div>
+              <p style="margin:0;font-size:12px;color:#6b7491">Volumen y costo por grupo: dato no disponible en esta vista.</p>
+            </div>
+          </div>
+
+          <!-- AUDIENCIAS -->
+          <div data-tab="3">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7491">Comparación de segmentos</div>
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600"><i style="width:9px;height:9px;border-radius:3px;background:#1f5eff;display:inline-block"></i>Remarketing</span><span style="font-size:11px;font-weight:600;color:#6b7491">Pendiente de medición</span></div><div style="height:8px;border-radius:6px;background:repeating-linear-gradient(90deg,#eef1f7 0 8px,#f6f8fc 8px 12px)"></div></div>
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600"><i style="width:9px;height:9px;border-radius:3px;background:#18c27a;display:inline-block"></i>Intención de compra</span><span style="font-size:11px;font-weight:600;color:#6b7491">Pendiente de medición</span></div><div style="height:8px;border-radius:6px;background:repeating-linear-gradient(90deg,#eef1f7 0 8px,#f6f8fc 8px 12px)"></div></div>
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600"><i style="width:9px;height:9px;border-radius:3px;background:#ffc233;display:inline-block"></i>Intereses</span><span style="font-size:11px;font-weight:600;color:#6b7491">Pendiente de medición</span></div><div style="height:8px;border-radius:6px;background:repeating-linear-gradient(90deg,#eef1f7 0 8px,#f6f8fc 8px 12px)"></div></div>
+              <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600"><i style="width:9px;height:9px;border-radius:3px;background:#8b5cf6;display:inline-block"></i>Demografía</span><span style="font-size:11px;font-weight:600;color:#6b7491">Pendiente de medición</span></div><div style="height:8px;border-radius:6px;background:repeating-linear-gradient(90deg,#eef1f7 0 8px,#f6f8fc 8px 12px)"></div></div>
+              <p style="margin:0;font-size:12px;color:#6b7491">Comparamos CTR y conversión por segmento cuando la cuenta tiene datos suficientes.</p>
+            </div>
+          </div>
+
+          <!-- CONVERSIONES -->
+          <div data-tab="4">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;border-radius:18px;background:#ebf2ff;padding:18px">
+                <div class="mono" style="font-size:48px;font-weight:600;line-height:1;color:#1f4fd1"><span data-count="8">0</span></div>
+                <div style="flex:1;min-width:160px"><div style="font-size:15px;font-weight:700">Conversiones verificadas</div><div style="font-size:12.5px;color:#3d4663;margin-top:2px">Total registrado en la cuenta</div></div>
+                <span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff;color:#1f4fd1">Dato real</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">
+                <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px"><div style="font-size:11px;color:#6b7491">Valor de conversión</div><div style="font-size:12.5px;font-weight:600;margin-top:6px;color:#4a5370">Dato no disponible</div></div>
+                <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px"><div style="font-size:11px;color:#6b7491">Costo por conversión</div><div class="mono" style="font-size:16px;font-weight:600;margin-top:4px;color:#9aa2b8">—</div></div>
+                <div style="border:1px solid #eef1f7;border-radius:14px;padding:12px"><div style="font-size:11px;color:#6b7491">Tasa de conversión</div><div style="font-size:12.5px;font-weight:600;margin-top:6px;color:#4a5370">Pendiente de medición</div></div>
+              </div>
+              <div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7491;margin-top:4px">Qué verificamos en la medición</div>
+              <ul style="display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none;font-size:13px;color:#2c3552">
+                <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f5eff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Que cada conversión se registre una sola vez.</li>
+                <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f5eff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Qué acciones cuentan como conversión principal.</li>
+                <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f5eff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Vinculación entre Google Ads y GA4.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#1f5eff;font-style:italic;margin-top:12px;text-align:right">Datos reales de una cuenta analizada</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS -->
+<section style="max-width:1200px;margin:0 auto;padding:88px 24px" aria-labelledby="prob-title">
+  <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px">
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a5370;margin-bottom:14px">El problema</div>
+      <h2 id="prob-title" style="font-size:clamp(30px,4vw,48px);line-height:1.05;max-width:620px">Muchas cuentas de Google Ads <span style="color:#e5452f">pierden oportunidades</span> todos los días.</h2>
+    </div>
+    <p style="max-width:300px;font-size:15px;line-height:1.5;color:#4a5370;margin:0">Estos son algunos de los problemas más comunes que encontramos en auditorías reales.</p>
+  </div>
+  <div class="problem-grid" data-reveal id="prob-grid">
+    <article class="problem-card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span class="problem-icon" style="background:#ff6b5b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path></svg></span><h3 style="margin:0;font-size:17px;font-weight:600">Presupuesto mal optimizado</h3></div>
+      <p style="margin:0 0 20px;color:#4a5370;font-size:14.5px;line-height:1.5">Campañas con potencial que no muestran tus anuncios por falta de presupuesto.</p>
+      <div class="problem-stat-box">
+        <div style="font-size:12.5px;color:#4a5370;margin-bottom:4px">Impresiones perdidas</div>
+        <div class="mono" style="font-size:28px;font-weight:600;margin-bottom:10px"><span data-count="51" data-suf="%">0%</span></div>
+        <div class="bar-track lost"><div class="bar-fill"></div></div>
+        <div class="problem-detail" style="color:#b5321f">Etiquetar.app · dato real</div>
+      </div>
+      <p style="margin:0 0 14px;font-size:13.5px;color:#4a5370;flex:1">Esto limita el crecimiento y genera pérdida de oportunidades.</p>
+      <a href="#casos" class="problem-link">Ver ejemplo →</a>
+    </article>
+    <article class="problem-card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span class="problem-icon" style="background:#ffc233"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8"></path></svg></span><h3 style="margin:0;font-size:17px;font-weight:600">Medición incompleta</h3></div>
+      <p style="margin:0 0 20px;color:#4a5370;font-size:14.5px;line-height:1.5">Conversiones mal registradas, duplicadas o que no se miden.</p>
+      <div class="problem-stat-box">
+        <div style="font-size:12.5px;color:#4a5370;margin-bottom:4px">Conversiones registradas</div>
+        <div class="mono" style="font-size:28px;font-weight:600"><span data-count="8">0</span></div>
+        <svg viewBox="0 0 200 40" style="width:100%;height:40px;display:block" aria-hidden="true"><path d="M0 32 C20 34 30 18 50 24 S80 38 100 26 S140 10 160 22 S190 34 200 26" fill="none" stroke="#ff6b5b" stroke-width="2.5" stroke-linecap="round"></path></svg>
+        <div class="problem-detail" style="color:#8a5d00">Sin duplicados: lo verificamos primero</div>
+      </div>
+      <p style="margin:0 0 14px;font-size:13.5px;color:#4a5370;flex:1">Sin medición correcta es imposible tomar buenas decisiones.</p>
+      <a href="#casos" class="problem-link">Ver ejemplo →</a>
+    </article>
+    <article class="problem-card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span class="problem-icon" style="background:#1f5eff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg></span><h3 style="margin:0;font-size:17px;font-weight:600">Segmentación desalineada</h3></div>
+      <p style="margin:0 0 20px;color:#4a5370;font-size:14.5px;line-height:1.5">Audiencias, ubicaciones o keywords que consumen presupuesto y no convierten.</p>
+      <div class="problem-stat-box" style="display:flex;flex-direction:column;gap:12px;font-size:13px">
+        <div style="display:grid;grid-template-columns:10px minmax(0,1fr) 80px;gap:10px;align-items:center"><i style="width:9px;height:9px;border-radius:50%;background:#ff6b5b;display:inline-block"></i>Tráfico irrelevante<div style="height:8px;border-radius:6px;background:#eef1f7;overflow:hidden"><div style="height:100%;width:60%;background:#ff6b5b;border-radius:6px"></div></div></div>
+        <div style="display:grid;grid-template-columns:10px minmax(0,1fr) 80px;gap:10px;align-items:center"><i style="width:9px;height:9px;border-radius:50%;background:#ffc233;display:inline-block"></i>Baja intención<div style="height:8px;border-radius:6px;background:#eef1f7;overflow:hidden"><div style="height:100%;width:35%;background:#ffc233;border-radius:6px"></div></div></div>
+        <div style="display:grid;grid-template-columns:10px minmax(0,1fr) 80px;gap:10px;align-items:center"><i style="width:9px;height:9px;border-radius:50%;background:#18c27a;display:inline-block"></i>Oportunidad<div style="height:8px;border-radius:6px;background:#eef1f7;overflow:hidden"><div style="height:100%;width:70%;background:#18c27a;border-radius:6px"></div></div></div>
+        <div style="font-size:11px;color:#6b7491">Ilustrativo, sin valores</div>
+      </div>
+      <p style="margin:0 0 14px;font-size:13.5px;color:#4a5370;flex:1">Identificamos audiencias y keywords con mejor rendimiento.</p>
+      <a href="#casos" class="problem-link">Ver ejemplo →</a>
+    </article>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" style="background:linear-gradient(180deg,#e9faf6,#f1f7fd)" aria-labelledby="proc-title">
+  <div style="max-width:1200px;margin:0 auto;padding:88px 24px">
+    <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px">
+      <div><div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a5370;margin-bottom:14px">Nuestro proceso</div><h2 id="proc-title" style="font-size:clamp(32px,4.4vw,52px);line-height:1">Cómo trabajamos</h2></div>
+      <p style="max-width:330px;font-size:15px;line-height:1.5;color:#4a5370;margin:0">Un enfoque técnico, basado en datos y orientado a resultados.</p>
+    </div>
+    <div data-reveal id="proceso-anim">
+      <div class="proc-grid-wrap">
+        <div class="proc-nodes">
+          <div class="proc-line-track"></div>
+          <div class="proc-line-fill" id="proc-line"></div>
+          <div class="proc-node"><span class="proc-dot" id="proc-dot-0"></span><span class="proc-node-label" id="proc-label-0">DATOS</span></div>
+          <div class="proc-node"><span class="proc-dot" id="proc-dot-1"></span><span class="proc-node-label" id="proc-label-1">DIAGNÓSTICO</span></div>
+          <div class="proc-node"><span class="proc-dot" id="proc-dot-2"></span><span class="proc-node-label" id="proc-label-2">ACCIÓN</span></div>
+          <div class="proc-node"><span class="proc-dot" id="proc-dot-3"></span><span class="proc-node-label" id="proc-label-3">MEJORA</span></div>
+        </div>
+      </div>
+      <ol class="proc-steps">
+        <li class="proc-step" id="proc-step-0"><span class="proc-icon" style="background:#1f5eff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5"></path></svg></span>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="mono" style="color:#1f5eff;font-weight:600;font-size:13px">01</span><span class="mono" style="font-size:10px;letter-spacing:.08em;color:#6b7491">DATOS</span></div>
+          <h3 style="margin:4px 0 8px;font-size:18px;font-weight:600">Diagnóstico</h3><p style="margin:0;font-size:14px;line-height:1.5;color:#4a5370">Analizamos tu cuenta en profundidad con datos reales.</p></li>
+        <li class="proc-step" id="proc-step-1"><span class="proc-icon" style="background:#18c27a"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4"></path></svg></span>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="mono" style="color:#0b8a52;font-weight:600;font-size:13px">02</span><span class="mono" style="font-size:10px;letter-spacing:.08em;color:#6b7491">DIAGNÓSTICO</span></div>
+          <h3 style="margin:4px 0 8px;font-size:18px;font-weight:600">Corrección</h3><p style="margin:0;font-size:14px;line-height:1.5;color:#4a5370">Solucionamos problemas de medición, estructura y configuración.</p></li>
+        <li class="proc-step" id="proc-step-2"><span class="proc-icon" style="background:#ffc233"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2 .7 3 2.8 3 6"></path></svg></span>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="mono" style="color:#9a6a00;font-weight:600;font-size:13px">03</span><span class="mono" style="font-size:10px;letter-spacing:.08em;color:#6b7491">ACCIÓN</span></div>
+          <h3 style="margin:4px 0 8px;font-size:18px;font-weight:600">Segmentación</h3><p style="margin:0;font-size:14px;line-height:1.5;color:#4a5370">Optimizamos audiencias, keywords y ubicaciones para mejorar resultados.</p></li>
+        <li class="proc-step" id="proc-step-3"><span class="proc-icon" style="background:#8b5cf6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6M10 20V9M16 20v-5M22 4l-7 6-4-3-7 6"></path></svg></span>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="mono" style="color:#6d3fd6;font-weight:600;font-size:13px">04</span><span class="mono" style="font-size:10px;letter-spacing:.08em;color:#6b7491">MEJORA</span></div>
+          <h3 style="margin:4px 0 8px;font-size:18px;font-weight:600">Revisión semanal</h3><p style="margin:0;font-size:14px;line-height:1.5;color:#4a5370">Monitoreamos, ajustamos y te mostramos avances claros.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS -->
+<section id="casos" style="max-width:1200px;margin:0 auto;padding:88px 24px" aria-labelledby="casos-title">
+  <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px">
+    <div><div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a5370;margin-bottom:14px">Casos y cuentas que estamos trabajando</div><h2 id="casos-title" style="font-size:clamp(30px,3.8vw,44px);line-height:1.05">Ejemplos reales de nuestro trabajo.</h2></div>
+    <p style="font-size:14px;color:#4a5370;margin:0">Datos reales, sin promesas genéricas.</p>
+  </div>
+  <div class="case-grid">
+    <article class="case-card" data-reveal>
+      <div class="case-head"><span class="case-avatar" style="background:#fff1ef;border:1px solid #ffd2cb;color:#e5452f">E</span><div style="flex:1;min-width:140px"><h3 style="font-weight:700;font-size:17px;margin:0">Etiquetar.app</h3><div style="font-size:12.5px;color:#6b7491">Ecommerce de etiquetas</div></div><span style="display:flex;align-items:center;gap:7px;background:#d6f7e7;color:#0b6e43;font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 11px;border-radius:999px;white-space:nowrap"><i style="width:7px;height:7px;border-radius:50%;background:#18c27a;display:inline-block;animation:livePulse 2s infinite"></i>CASO REAL</span></div>
+      <div class="case-stats">
+        <div class="case-stat" style="background:#eef3ff"><div style="font-size:11.5px;color:#4a5370">CTR</div><div class="mono" style="font-weight:600;font-size:15px;margin:6px 0">3,65% → 5,14%</div><div style="font-size:12px;color:#0b8a52;font-weight:600">↑ +41%</div></div>
+        <div class="case-stat" style="background:#f4f6fb"><div style="font-size:11.5px;color:#4a5370">Conversiones</div><div class="mono" style="font-weight:600;font-size:22px;margin:4px 0">8</div><div style="font-size:12px;color:#1f5eff;font-weight:600">Dato real</div></div>
+        <div class="case-stat" style="background:#fff1ef"><div style="font-size:11.5px;color:#4a5370">Impresiones perdidas por presupuesto</div><div class="mono" style="font-weight:600;font-size:22px;margin:4px 0;color:#c23a28">51%</div></div>
+      </div>
+      <p style="margin:0 0 18px;font-size:14px;line-height:1.55;color:#2c3552">El análisis permitió detectar una fuerte limitación de presupuesto y oportunidades de optimización a partir de los datos reales de la cuenta.</p>
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">Principales hallazgos</div>
+      <ul style="display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#3d4663;margin:0;padding:0;list-style:none">
+        <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Limitación de presupuesto en campañas con buen rendimiento.</li>
+        <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Oportunidades de mejora en segmentación y keywords.</li>
+        <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Recomendaciones para escalar.</li>
+      </ul>
+      <p style="margin:16px 0 0;font-size:11.5px;color:#6b7491">+41% es la variación calculada entre ambos CTR.</p>
+    </article>
+    <article class="case-card morfi" data-reveal>
+      <div class="case-head"><span class="case-avatar" style="background:#ff7a45;color:#fff">M</span><div style="flex:1;min-width:140px"><h3 style="font-weight:700;font-size:17px;margin:0">Morfi Viandas</h3><div style="font-size:12.5px;color:#6b7491">Comida saludable</div></div><span style="display:flex;align-items:center;gap:7px;background:#ede4ff;color:#5b2fc4;font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 11px;border-radius:999px;white-space:nowrap"><i style="width:7px;height:7px;border-radius:50%;border:2px solid #8b5cf6;background:#fff;display:inline-block"></i>EN PREPARACIÓN</span></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;background:#fff;border-radius:16px;padding:18px;border:1px solid #eee8fb">
+        <div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:12px">Cuenta armada para lanzamiento</div>
+          <ul style="display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#3d4663;margin:0;padding:0;list-style:none">
+            <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Estructura de campañas</li>
+            <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Segmentación</li>
+            <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Configuración de medición</li>
+            <li style="display:flex;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Preparación para lanzamiento</li>
+            <li style="display:flex;gap:10px;color:#5b2fc4;font-weight:600"><span style="width:16px;height:16px;border-radius:50%;border:2px dashed #8b5cf6;flex:none;margin-top:2px"></span>En espera de activación.</li>
+          </ul>
+        </div>
+        <div role="img" aria-label="Espacio para foto de producto de Morfi Viandas" style="min-height:150px;border-radius:14px;background:repeating-linear-gradient(135deg,#f3effc 0 10px,#ebe4fa 10px 20px);display:grid;place-items:center;font-size:12px;color:#5b4a8a;text-align:center;padding:12px">Foto de producto<br>Morfi Viandas</div>
+      </div>
+      <p style="font-size:12.5px;color:#6b7491;margin:16px 0 0">Campañas pausadas. Sin resultados para mostrar todavía.</p>
+    </article>
+  </div>
+</section>
+
+<!-- PRECIOS -->
+<section id="precios" style="max-width:1200px;margin:0 auto;padding:40px 24px 88px" aria-labelledby="precios-title">
+  <div data-reveal style="margin-bottom:36px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a5370;margin-bottom:14px">Planes de gestión de Google Ads</div>
+    <h2 id="precios-title" style="font-size:clamp(30px,3.8vw,44px);line-height:1.05">Elegí el plan que mejor se adapte a tu negocio.</h2>
+  </div>
+  <div class="price-grid">
+    <article class="price-card" data-reveal>
+      <h3 style="margin:0 0 6px;font-size:20px;font-weight:700">Starter</h3>
+      <p style="margin:0 0 18px;font-size:13.5px;line-height:1.45;color:#4a5370;min-height:40px">Ideal para empezar o cuentas más simples.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;flex-wrap:wrap"><span class="mono" style="font-size:28px;font-weight:600;letter-spacing:-.02em">$120.000</span><span style="font-size:13px;color:#6b7491">/ mes</span></div>
+      <ul class="price-list">
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Gestión de campañas</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Optimización básica</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Informe mensual</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Soporte por email</li>
+      </ul>
+      <a href="#" class="price-cta plan-link" data-plan-name="Starter" data-plan-price="$120.000/mes" style="background:#f1f3f8;color:#0d1530" target="_blank" rel="noopener">Contratar plan<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+    </article>
+    <article class="price-card" data-reveal style="border-color:#2ee6c1;box-shadow:0 20px 44px -28px rgba(24,194,122,.6)">
+      <span class="price-badge" style="background:linear-gradient(90deg,#18c27a,#19c3e6);color:#06281a">Recomendado</span>
+      <h3 style="margin:0 0 6px;font-size:20px;font-weight:700">Growth</h3>
+      <p style="margin:0 0 18px;font-size:13.5px;line-height:1.45;color:#4a5370;min-height:40px">Para negocios que buscan crecer con resultados medibles.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;flex-wrap:wrap"><span class="mono" style="font-size:28px;font-weight:600;letter-spacing:-.02em">$220.000</span><span style="font-size:13px;color:#6b7491">/ mes</span></div>
+      <ul class="price-list">
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Gestión y optimización completa</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Seguimiento de conversiones</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Audiencias y remarketing</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Informe semanal</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Soporte prioritario</li>
+      </ul>
+      <a href="#" class="price-cta plan-link" data-plan-name="Growth" data-plan-price="$220.000/mes" style="background:#0d1530;color:#fff" target="_blank" rel="noopener">Contratar plan<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+    </article>
+    <article class="price-card" data-reveal>
+      <h3 style="margin:0 0 6px;font-size:20px;font-weight:700">Pro</h3>
+      <p style="margin:0 0 18px;font-size:13.5px;line-height:1.45;color:#4a5370;min-height:40px">Para cuentas avanzadas o mayor inversión publicitaria.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;flex-wrap:wrap"><span style="font-size:13px;font-weight:600;color:#4a5370">Desde</span><span class="mono" style="font-size:28px;font-weight:600;letter-spacing:-.02em">$380.000</span><span style="font-size:13px;color:#6b7491">/ mes</span></div>
+      <ul class="price-list">
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Todo lo del plan Growth</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Informe avanzado</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Testing y escalamiento</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Reuniones mensuales</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Soporte directo</li>
+      </ul>
+      <a href="#" class="price-cta plan-link" data-plan-name="Pro" data-plan-price="desde $380.000/mes" style="background:#f1f3f8;color:#0d1530" target="_blank" rel="noopener">Hablemos<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+    </article>
+    <article class="price-card" data-reveal style="border-color:#1f5eff;background:linear-gradient(180deg,#f0f5ff,#fff 60%);box-shadow:0 20px 44px -28px rgba(31,94,255,.6)">
+      <span class="price-badge" style="background:#1f5eff;color:#fff">Empezá por acá</span>
+      <h3 style="margin:0 0 6px;font-size:20px;font-weight:700">Auditoría independiente</h3>
+      <p style="margin:0 0 18px;font-size:13.5px;line-height:1.45;color:#4a5370;min-height:40px">Análisis completo de tu cuenta con hallazgos y recomendaciones concretas.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;flex-wrap:wrap"><span class="mono" style="font-size:28px;font-weight:600;letter-spacing:-.02em">$85.000</span><span style="font-size:13px;color:#6b7491">pago único</span></div>
+      <ul class="price-list">
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Revisión técnica completa</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Informe detallado</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Oportunidades de mejora</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#18c27a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Sin compromiso de gestión</li>
+      </ul>
+      <a href="#" id="audit-link-pricing" class="price-cta" style="background:#1f5eff;color:#fff;box-shadow:0 14px 28px -12px rgba(31,94,255,.8)" target="_blank" rel="noopener">Solicitar auditoría<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+    </article>
+  </div>
+</section>
+
+<!-- EXTRA -->
+<section id="extra" style="max-width:1200px;margin:0 auto;padding:0 24px 96px" aria-labelledby="extra-title">
+  <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px">
+    <div><div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a5370;margin-bottom:14px">Servicios extra</div><h2 id="extra-title" style="font-size:clamp(30px,3.8vw,44px);line-height:1.05">Más allá de Google Ads.</h2></div>
+    <p style="max-width:330px;font-size:14.5px;line-height:1.5;color:#4a5370;margin:0">Soluciones complementarias para un crecimiento más completo de tu negocio.</p>
+  </div>
+  <div class="extra-grid">
+    <a href="#" class="extra-card wa-extra" data-wa-msg="Hola, me interesa GA4 y medición." data-reveal style="background:#eafaf3;border:1px solid #cdeedf" target="_blank" rel="noopener"><span class="extra-icon" style="background:#18c27a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8"></path></svg></span><div style="flex:1"><h3 style="font-weight:700;font-size:16px;margin:0 0 6px">GA4 y medición</h3><div style="font-size:13.5px;line-height:1.5;color:#3d4663">Configuración y auditoría de Google Analytics 4, eventos y conversiones. Base para tomar decisiones con datos reales.</div></div></a>
+    <a href="#" class="extra-card wa-extra" data-wa-msg="Hola, me interesa SEO." data-reveal style="background:#ebf2ff;border:1px solid #d3e1fd" target="_blank" rel="noopener"><span class="extra-icon" style="background:#1f5eff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></span><div style="flex:1"><h3 style="font-weight:700;font-size:16px;margin:0 0 6px">SEO</h3><div style="font-size:13.5px;line-height:1.5;color:#3d4663">Optimización de tu sitio para mejorar el posicionamiento orgánico en el mediano y largo plazo.</div></div></a>
+    <a href="#" class="extra-card wa-extra" data-wa-msg="Hola, me interesa GEO / IA." data-reveal style="background:#f3edff;border:1px solid #e3d7fc" target="_blank" rel="noopener"><span class="extra-icon" style="background:#8b5cf6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"></path></svg></span><div style="flex:1"><h3 style="font-weight:700;font-size:16px;margin:0 0 6px">GEO / IA</h3><div style="font-size:13.5px;line-height:1.5;color:#3d4663">Visibilidad en buscadores con IA (ChatGPT, Perplexity, etc.). Prepará tu negocio para la nueva forma de buscar.</div></div></a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacto" class="cta-section" aria-labelledby="cta-title">
+<div class="cta-outer">
+  <div class="blob-bg" aria-hidden="true" style="left:-70px;bottom:-30px;width:220px;height:250px;background:linear-gradient(160deg,#19c3e6,#18c27a)"></div>
+  <div class="blob-bg" aria-hidden="true" style="right:-80px;top:-40px;width:240px;height:280px;background:linear-gradient(160deg,#c084fc,#6d3fd6);animation-duration:17s"></div>
+<div class="cta-box">
+  <div class="blob-bg" aria-hidden="true" style="left:-80px;bottom:-80px;width:280px;height:280px;background:#19c3e6;opacity:.45"></div>
+  <div class="blob-bg" aria-hidden="true" style="right:-60px;top:-60px;width:260px;height:260px;background:#8b5cf6;opacity:.5;animation-duration:17s"></div>
+  <div class="cta-inner" data-reveal>
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#a9b8e0;margin-bottom:16px">Tu cuenta puede estar perdiendo dinero</div>
+      <h2 id="cta-title" style="font-size:clamp(30px,4vw,50px);line-height:1.05;margin:0 0 18px">¿Querés <span style="color:#2ee6c1">saber qué estamos viendo</span> en tu cuenta de Google Ads?</h2>
+      <p style="font-size:16px;line-height:1.55;color:#c3cde8;margin:0;max-width:520px">Solicitá una auditoría y recibí un análisis completo con hallazgos y recomendaciones concretas.</p>
+    </div>
+    <div class="cta-links">
+      <a href="#" id="audit-link-cta" target="_blank" rel="noopener" class="cta-link blue"><span style="flex:1">Solicitar auditoría</span><span class="mono" style="font-size:14px;opacity:.9">$85.000</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+      <a href="#" id="wa-link-cta" target="_blank" rel="noopener" class="cta-link teal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5.2A8.5 8.5 0 1 1 21 11.5z"></path></svg><span style="flex:1">WhatsApp</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+      <a href="#" id="mail-link-cta" class="cta-link outline"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span style="flex:1">Email</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="footer-inner"><span>Inteliar Ads</span><span>Datos reales. Decisiones concretas.</span></div>
+</footer>
+
+<a href="#" id="sticky-wa" class="sticky-wa" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" hidden>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5.2A8.5 8.5 0 1 1 21 11.5z"></path></svg>WhatsApp
+</a>
+
+<script>
+(function(){
+  var WHATSAPP_NUMBER = '5491133649730';
+  var EMAIL = 'inteliarstack.ia@gmail.com';
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function wa(msg){ return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg); }
+
+  var auditMsg = 'Hola, quiero pedir una auditoría de Google Ads ($85.000).';
+  ['audit-link-header','audit-link-hero','audit-link-flow','audit-link-pricing','audit-link-cta'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.href = wa(auditMsg);
+  });
+  var waTalk = document.getElementById('wa-link-cta');
+  if (waTalk) waTalk.href = wa('Hola, quiero hablar con Inteliar Ads.');
+  var mailCta = document.getElementById('mail-link-cta');
+  if (mailCta) mailCta.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Auditoría de Google Ads');
+  var sticky = document.getElementById('sticky-wa');
+  if (sticky) sticky.href = wa('Hola, quiero hablar con Inteliar Ads.');
+
+  document.querySelectorAll('.plan-link').forEach(function(a){
+    var name = a.getAttribute('data-plan-name');
+    var price = a.getAttribute('data-plan-price');
+    a.href = wa('Hola, me interesa el plan ' + name + (price ? ' (' + price + ')' : '') + ' de Inteliar Ads.');
+  });
+  document.querySelectorAll('.wa-extra').forEach(function(a){
+    a.href = wa(a.getAttribute('data-wa-msg'));
+  });
+
+  // Mobile menu
+  var menuBtn = document.getElementById('menu-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', function(){
+      var open = mobileNav.hasAttribute('hidden');
+      if (open) { mobileNav.removeAttribute('hidden'); menuBtn.setAttribute('aria-expanded','true'); }
+      else { mobileNav.setAttribute('hidden',''); menuBtn.setAttribute('aria-expanded','false'); }
+    });
+    mobileNav.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') { mobileNav.setAttribute('hidden',''); menuBtn.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if (rm) {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); runCounts(el); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          runCounts(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  function runCounts(container){
+    container.querySelectorAll('[data-count]').forEach(function(n){
+      if (n.dataset.done) return;
+      n.dataset.done = '1';
+      var target = +n.dataset.count, suf = n.dataset.suf || '';
+      if (rm) { n.textContent = target + suf; return; }
+      var t0 = performance.now(), d = 800;
+      function frame(now){
+        var p = Math.min(1, (now - t0) / d);
+        n.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suf;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  // Hero dashboard bars draw-in shortly after load
+  setTimeout(function(){
+    var shareBar = document.getElementById('share-bar'); if (shareBar) shareBar.style.width = '49%';
+    var beforeBar = document.getElementById('ctr-before-bar'); if (beforeBar) beforeBar.style.width = '71%';
+    var afterBar = document.getElementById('ctr-after-bar'); if (afterBar) afterBar.style.width = '100%';
+  }, 250);
+
+  // Dashboard tabs
+  var tabBtns = document.querySelectorAll('[data-tab-btn]');
+  var tabPanels = document.querySelectorAll('[data-tab]');
+  tabBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var idx = btn.getAttribute('data-tab-btn');
+      tabBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      tabPanels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-tab') === idx); });
+    });
+  });
+
+  // Open-flow step carousel (01 problema -> 02 diagnostico -> 03 accion)
+  var flowSteps = document.querySelectorAll('[data-flow]');
+  var stepBtns = document.querySelectorAll('[data-step-btn]');
+  var findingCard = document.getElementById('open-flow-btn');
+  var findingHint = document.getElementById('finding-hint');
+  var donut = document.getElementById('donut');
+  var flowTimer = null;
+  var currentStep = 0;
+
+  function setStep(n){
+    currentStep = n;
+    flowSteps.forEach(function(s){ s.classList.toggle('active', s.getAttribute('data-flow') === String(n)); });
+    stepBtns.forEach(function(b){
+      var bn = +b.getAttribute('data-step-btn');
+      b.classList.toggle('active', bn === n);
+      var fill = b.querySelector('.step-fill > div');
+      if (fill) fill.style.width = (bn <= n ? '100%' : '0%');
+    });
+    if (findingCard) findingCard.classList.toggle('active', n > 0);
+    if (findingHint) findingHint.textContent = n > 0 ? 'Viendo el recorrido del hallazgo' : 'Tocá para ver problema → diagnóstico → acción';
+    if (donut) donut.setAttribute('stroke-dasharray', n === 1 ? '128.2 251.3' : '0 251.3');
+  }
+  function goStep(n){ clearInterval(flowTimer); flowTimer = null; setStep(n); }
+  if (findingCard) {
+    findingCard.addEventListener('click', function(){
+      clearInterval(flowTimer);
+      setStep(1);
+      if (rm) return;
+      flowTimer = setInterval(function(){
+        if (currentStep >= 3) { clearInterval(flowTimer); flowTimer = null; return; }
+        setStep(currentStep + 1);
+      }, 3400);
+    });
+  }
+  stepBtns.forEach(function(b){
+    b.addEventListener('click', function(){ goStep(+b.getAttribute('data-step-btn')); });
+  });
+
+  // Proceso auto-cycle highlight, starts when section enters view
+  var procColors = ['#1f5eff', '#18c27a', '#ffc233', '#8b5cf6'];
+  var procTimer = null, procIdx = -1;
+  function setProc(i){
+    procIdx = i;
+    for (var k = 0; k < 4; k++) {
+      var dot = document.getElementById('proc-dot-' + k);
+      var label = document.getElementById('proc-label-' + k);
+      var step = document.getElementById('proc-step-' + k);
+      var active = k <= i;
+      if (dot) { dot.style.background = active ? procColors[k] : '#fff'; dot.style.borderColor = active ? procColors[k] : '#d3e6ef'; dot.style.transform = (k === i ? 'scale(1.25)' : 'scale(1)'); }
+      if (label) label.style.color = active ? '#0d1530' : '#8a93ad';
+      if (step) step.classList.toggle('active', k === i);
+    }
+    var line = document.getElementById('proc-line');
+    if (line) line.style.width = (i < 0 ? 0 : i / 3 * 75) + '%';
+  }
+  function startProc(){
+    if (procTimer) return;
+    if (rm) { setProc(3); procTimer = 1; return; }
+    setProc(0);
+    procTimer = setInterval(function(){ setProc(procIdx >= 3 ? 0 : procIdx + 1); }, 1600);
+  }
+  var procEl = document.getElementById('proceso-anim');
+  if (procEl) {
+    if (rm) { startProc(); }
+    else {
+      var procIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) { startProc(); procIo.unobserve(e.target); } });
+      }, { threshold: 0.2 });
+      procIo.observe(procEl);
+    }
+  }
+
+  // Sticky WhatsApp button on mobile after scroll
+  function updateSticky(){
+    var mobile = window.innerWidth < 860;
+    var scrolled = window.scrollY > 500;
+    if (sticky) sticky.hidden = !(mobile && scrolled);
+  }
+  window.addEventListener('scroll', updateSticky, { passive: true });
+  window.addEventListener('resize', updateSticky);
+  updateSticky();
+})();
+</script>
+</body>
+</html>
