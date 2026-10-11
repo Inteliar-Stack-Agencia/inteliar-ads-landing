@@ -1,0 +1,24 @@
+# Inteliar Ads
+
+> Auditoría y gestión de campañas de Google Ads en Argentina, basada en datos reales de cada cuenta en vez de recomendaciones genéricas.
+
+Inteliar Ads es el servicio de gestión de Google Ads de Inteliar Stack. Audita cuentas existentes para detectar desperdicio de presupuesto, problemas de medición de conversiones y segmentación mal calibrada, y gestiona campañas de forma continua con revisión semanal.
+
+## Qué ofrece
+
+- Auditoría técnica independiente de una cuenta de Google Ads (pago único, $85.000 ARS): revisión de estructura, tracking de conversiones end-to-end, y detección de tráfico desperdiciado.
+- Gestión mensual de campañas en 3 planes: Starter ($120.000 ARS/mes, 1 campaña), Growth ($220.000 ARS/mes, hasta 3 campañas, el más elegido), y Pro (desde $380.000 ARS/mes, campañas ilimitadas).
+- Servicios complementarios: auditoría y configuración de Google Analytics 4 (GA4), SEO, y optimización de visibilidad en motores de búsqueda con IA (GEO).
+
+## Diferenciador
+
+No cobra un porcentaje del presupuesto de medios del cliente — cobra solo por la gestión, para evitar el incentivo de inflar el gasto. Usa herramientas propias conectadas directo a la API de Google Ads para auditar y corregir cuentas con datos reales, no estimaciones.
+
+## Caso de referencia
+
+Etiquetar.app (software de etiquetado para e-commerce): tras la auditoría, el CTR subió de 3,65% a 5,14% (+41%), se detectó que el 51% de las impresiones posibles se perdían por limitación de presupuesto, y se confirmaron 8 conversiones reales que antes no se medían correctamente.
+
+## Contacto
+
+- WhatsApp: +54 9 11 3364-9730
+- Email: inteliarstack.ia@gmail.com
